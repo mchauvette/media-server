@@ -65,13 +65,19 @@ class Video(object):
 @app.route('/')
 def index():
     # Load the pictures
-    pictures = [Picture(f) for f in os.listdir('pictures') if Picture.isPicture(f)]
-    picture_rows = []
-    for index in range(0, len(pictures), 4):
-        picture_rows += [pictures[index:min(index+4, len(pictures))]]
-
+    if os.path.exists('pictures'):
+        pictures = [Picture(f) for f in os.listdir('pictures') if Picture.isPicture(f)]
+        picture_rows = []
+        for index in range(0, len(pictures), 4):
+            picture_rows += [pictures[index:min(index+4, len(pictures))]]
+    else:
+        picture_rows = []
+    
     # Load the videos
-    videos = [Video(d) for d in os.listdir('videos') if Video.hasVideo(d)]
+    if os.path.exists('videos'):
+        videos = [Video(d) for d in os.listdir('videos') if Video.hasVideo(d)]
+    else:
+        videos = []
 
     return render_template('index.html', picture_rows=picture_rows, videos=videos)
 
