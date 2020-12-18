@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Media Server</title>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1 onclick="location.href='/'">Media Server</h1>
+
+    <div onclick="location.href='/'">
+        <img src="/pictures/{{ picture.filename }}">
+    </div>
+    <div>
+        <h2>{{ picture.width }}x{{ picture.height }}</h2>
+    </div>
+</div>
+{% endblock %}
