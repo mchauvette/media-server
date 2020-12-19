@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  {{ name }}'s Pictures
+</h1>
+
+{% if picture_rows|length == 0 %}
+<h2 class="subtitle">
+    There are no pictures to display!
+</h2>
+{% endif %}
+
+<div class="tile is-ancestor">
+    <div class="tile is-12 is-vertical">
+        <div class="tile is-parent">
+            <div class="tile is-2"></div>
+            <div class="tile is-child box">
+                <a href="{{ url_for('media.pictures') }}">
+                    <figure class="image">
+                        <img src="/picture/{{ picture.filename }}">
+                    </figure>
+                </a>
+            </div>
+            <div class="tile is-2"></div>
+        </div>
+        <div class="tile is-parent">
+            <div class="tile is-2"></div>
+            <div class="tile is-child box">
+                <a class="button is-light is-fullwidth is-fullheight" href="{{ url_for('media.pictures') }}">
+                    <p class="title has-text-primary">Back</p>
+                </a>
+            </div>
+            <div class="tile is-child box">
+                <a class="button is-light is-fullwidth is-fullheight" href="/delete/picture/{{ picture.filename }}">
+                    <p class="title has-text-primary">Delete</p>
+                </a>
+            </div>
+            <div class="tile is-2"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
